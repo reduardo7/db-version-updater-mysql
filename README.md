@@ -14,7 +14,7 @@ To work, creates an auxiliar database table (database\_version)  to register the
 
 # Configuration
 
-Simply chance the database name to use, or remove it to select manually.
+Simply change the database name to use, or remove it for manually select.
 
 <pre>USE databaseName</pre>
 
