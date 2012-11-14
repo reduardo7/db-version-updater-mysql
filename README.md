@@ -33,7 +33,7 @@ source /path/to/db_updater.sql;</pre>
 
 ## From terminal or command line
 
-<pre>mysql -u USER -p < /path/to/db_updater.sql</pre>
+<pre>mysql -u USER -p &lt; /path/to/db_updater.sql</pre>
 
 or
 
