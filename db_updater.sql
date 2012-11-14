@@ -1,4 +1,7 @@
-﻿-- NOTE: A unique query per call. There is not designed for multi-query per call.
+﻿-- Execute Queries for update.
+--
+-- Eduardo Cuomo | eduardo.cuomo.ar@gmail.com
+--
 
 
 
@@ -9,12 +12,10 @@ USE databaseName;
 
 -- Create table
 CREATE TABLE IF NOT EXISTS `database_version` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `version` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `executed_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `version` (`version`)
+  PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 
@@ -38,7 +39,7 @@ BEGIN
   CREATE TEMPORARY TABLE IF NOT EXISTS mem_version_control (v INTEGER) ENGINE=MEMORY;
   DELETE FROM mem_version_control;
   
-  SET @cQuery = CONCAT('INSERT INTO mem_version_control SELECT id FROM database_version WHERE version = ', @iVersion);
+  SET @cQuery = CONCAT('INSERT INTO mem_version_control SELECT version FROM database_version WHERE version = ', @iVersion);
   PREPARE QUERY FROM @cQuery;
   EXECUTE QUERY;
   DEALLOCATE PREPARE QUERY;
@@ -61,33 +62,32 @@ END ;;
 DELIMITER ;
 
 
-
 -- Update DB
+-- NOTE: A unique query per call. There is not designed for multi-query per call.
 
 
 CALL database_version_control(
   1,
-  'PRIMERA PRUEBA',
-  'INSERT INTO category (version, name) VALUES (1, "Prueba 1")'
+  'First test',
+  'INSERT INTO category (version, name) VALUES (1, "First")'
 );
-
 
 CALL database_version_control(
   2,
-  'SEGUNDA PRUEBA',
-  'INSERT INTO category (version, name) VALUES (2, "Prueba 2")'
+  'Sec. Test',
+  'DELETE FROM category WHERE id = 123'
 );
 
+-- X QUERY START (NOTE: One query per call)
+CALL database_version_control(
+  3,
+  'X Query (1)',
+  'ALTER TABLE `category` ADD `test` INT NOT NULL'
+);
 
 CALL database_version_control(
-  5,
-  'asdasdasdas',
-  'INSERT INTO category (version, name) VALUES (5, "asdasdasdasdasd")'
+  4,
+  'X Query (2)',
+  'INSERT INTO category (`test`) VALUES (123)'
 );
-
-
-CALL database_version_control(
-  6,
-  '666666',
-  'INSERT INTO category (version, name) VALUES (6, "666666")'
-);
+-- X QUERY END
