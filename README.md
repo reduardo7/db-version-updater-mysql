@@ -1,5 +1,5 @@
-db-version-updater-mysql
-========================
+db-version-updater-mysql | DB Version Updater (MySQL)
+=====================================================
 
 # Description
 
