@@ -11,6 +11,12 @@ It is the simplest and easiest way to perform this task so common, without the n
 
 To work, creates an auxiliar database table (database\_version)  to register the executed scripts, and prevent to execute any executed script.
 
+## Why use it?
+
+1. Very easy to implement.
+2. No additionals components required.
+3. No need to learn a new language.
+4. No need to learn a new syntax.
 
 # Configuration
 
