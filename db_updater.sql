@@ -1,14 +1,14 @@
-﻿-- Execute Queries for update.
+--
+-- Execute Queries for update.
+-- Version: 1.0
 --
 -- Eduardo Cuomo | eduardo.cuomo.ar@gmail.com
 --
-
-
+-- URL: https://github.com/reduardo7/db-version-updater-mysq
+--
 
 -- Select DB
 USE databaseName;
-
-
 
 -- Create table
 CREATE TABLE IF NOT EXISTS `database_version` (
@@ -18,14 +18,9 @@ CREATE TABLE IF NOT EXISTS `database_version` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-
-
 -- Procedure
 DELIMITER ;;
-
-
 DROP PROCEDURE IF EXISTS database_version_control ;;
-
 
 CREATE PROCEDURE database_version_control(IN version INTEGER, IN description VARCHAR(255), IN query TEXT)
 BEGIN
