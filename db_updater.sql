@@ -4,7 +4,7 @@
 --
 -- Eduardo Cuomo | eduardo.cuomo.ar@gmail.com
 --
--- URL: https://github.com/reduardo7/db-version-updater-mysq
+-- URL: https://github.com/reduardo7/db-version-updater-mysql
 --
 
 -- Select DB
